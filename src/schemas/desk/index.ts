@@ -1,8 +1,7 @@
 import { File, Gear, NavigationArrow } from '@phosphor-icons/react'
 import { StructureResolver } from 'sanity/desk'
 
-import { defaultMetaItem } from '~/lib/meta/schemas/defaultMeta'
-
+// import { defaultMetaItem } from '~/lib/meta/schemas/defaultMeta'
 import { singletonItem } from './singleton-item'
 
 export const structureResolver: StructureResolver = (S) => {
@@ -26,7 +25,7 @@ export const structureResolver: StructureResolver = (S) => {
           S.list()
             .title('Settings')
             .items([
-              defaultMetaItem(S),
+              // defaultMetaItem(S),
               singletonItem(S, 'navigation', 'Navigation', NavigationArrow),
             ]),
         ),

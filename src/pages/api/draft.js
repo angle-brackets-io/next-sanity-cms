@@ -18,7 +18,6 @@ export default async function preview(req, res) {
   }
 
   const { query } = req
-console.log(query,"query");
   const secret = typeof query.secret === 'string' ? query.secret : undefined
   const slug = typeof query.slug === 'string' ? query.slug : undefined
   const type = typeof query.type === 'string' ? query.type : undefined

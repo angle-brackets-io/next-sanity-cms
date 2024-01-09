@@ -10,7 +10,6 @@ export const page = {
     { name: 'general', title: 'General' },
     { name: 'content', title: 'Content', default: true },
     { name: 'meta', title: 'meta' },
-
   ],
   fields: [
     {
@@ -41,7 +40,6 @@ export const page = {
       validation: (Rule: Rule) => Rule.required(),
     },
     getModulesField('content'),
- 
   ],
   preview: {
     select: {

@@ -1,34 +1,28 @@
 import { groq } from 'next-sanity'
-import { useLiveQuery } from 'next-sanity/preview'
-import { ParsedUrlQuery } from 'querystring'
-import TemplateRenderer from '~/components/template-renderer/index'
 
 import Layout from '~/components/layout'
-import ModuleRenderer from '~/components/module-renderer'
-import { fragment as modulesFragment } from '~/components/module-renderer'
-import { getMeta } from '~/lib/meta'
-import { IModule } from '~/lib/modules'
+import TemplateRenderer from '~/components/template-renderer/index'
 import { getNavigation } from '~/lib/navigation'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 
+import SEO from '../components/seo'
+
 export const getPageQuery = (slug) => groq`
 [
   *[_type == "post" && slug.current == '${slug}'],
-  *[_type == "page" && slug.current == '${slug}'] {
-    _type,
-    "title": title,
-    "slug": slug.current,
-  }
+  *[_type == "page" && slug.current == '${slug}']
 ]
 `
-
 
 function Page(props) {
   return (
     <Layout>
-    <TemplateRenderer  {...props}/>
-
+      <TemplateRenderer {...props} />
+      <SEO
+        title={props?.page?.seoTitle}
+        description={props?.page?.metaDescription}
+      />
     </Layout>
   )
 }
@@ -52,9 +46,8 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      allSlugs?.map(({ slug }) =>
-        slug !== '/' ? `/${slug}` : `${slug}`,
-      ) || [],
+      allSlugs?.map(({ slug }) => (slug !== '/' ? `/${slug}` : `${slug}`)) ||
+      [],
     fallback: false,
   }
 }
@@ -72,10 +65,7 @@ export const getStaticProps = async ({ draftMode = false, params }) => {
 
   const [blog, page] = await client.fetch(pageQuery)
   const pageData = [...blog, ...page]
-  
-  
-  // const meta = await getMeta(pagesData[0]?._type, slug)
-  
+
   const navigation = await getNavigation()
 
   return {
@@ -84,7 +74,6 @@ export const getStaticProps = async ({ draftMode = false, params }) => {
       token: draftMode ? readToken : '',
       page: pageData[0],
       slug,
-      // meta,
       navigation,
     },
   }

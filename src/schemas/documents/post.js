@@ -6,7 +6,6 @@ export const post = {
     { name: 'general', title: 'General' },
     { name: 'content', title: 'Content', default: true },
     { name: 'meta', title: 'meta' },
-
   ],
   fields: [
     {

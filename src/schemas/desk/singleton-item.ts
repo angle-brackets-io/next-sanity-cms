@@ -2,7 +2,7 @@ import { Icon } from '@phosphor-icons/react'
 import { previewView } from 'sanity.config'
 import { StructureBuilder } from 'sanity/desk'
 
-import { metaPreviewView } from '~/lib/meta'
+// import { metaPreviewView } from '~/lib/meta'
 import { resolveHref } from '~/lib/sanity.links'
 
 export const singletonItem = (
@@ -23,9 +23,6 @@ export const singletonItem = (
           S.view.form(),
           // Preview
           previewView(S),
-          metaPreviewView(S, {
-            resolveHref,
-          }),
         ]),
     )
 }
