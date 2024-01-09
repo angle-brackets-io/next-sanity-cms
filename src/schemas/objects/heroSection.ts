@@ -1,4 +1,4 @@
-import { ConditionalPropertyCallbackContext, Rule } from 'sanity'
+import { Rule } from 'sanity'
 
 import { ModulePreview } from '../components/modulePreview'
 
@@ -11,6 +11,12 @@ export const heroSection = {
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'button',
+      title: 'Button',
+      type: 'link',
       validation: (Rule: Rule) => Rule.required(),
     },
   ],

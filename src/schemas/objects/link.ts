@@ -45,6 +45,18 @@ export const linkFields = [
       ),
   },
   {
+    title: 'Variant',
+    name: 'variant',
+    type: 'string',
+    initialValue: 'primary',
+    options: {
+      list: [
+        {title: 'Primary', value: 'primary'},
+        {title: 'Secondary', value: 'secondary'},
+      ],
+    },
+  },
+  {
     name: 'link',
     type: 'url',
     hidden: ({ parent }: any) => !isLink(parent),
@@ -96,6 +108,7 @@ export const link = {
       link: 'link',
       newTab: 'targetBlank',
       label: 'label',
+      variant: 'variant',
     },
     prepare: ({
       type,
@@ -104,6 +117,7 @@ export const link = {
       slug,
       link,
       newTab,
+      variant,
       label,
     }: Record<string, any>) => {
       const isLink = type === 'link'
